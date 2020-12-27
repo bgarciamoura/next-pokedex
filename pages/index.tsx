@@ -1,16 +1,10 @@
 import { GetStaticProps } from 'next';
+import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 
-/**
- * LINK DA API PARA IMAGENS
- * https://pokeapi.co/api/v2/pokemon/1/
- * substituir o id no fim
- * seção sprites do json
- */
-
 export const getStaticProps: GetStaticProps = async () => {
-    const pokemons = await fetch('https://pokeapi.co/api/v2/pokedex/2/')
+    const pokemons = await fetch('https://pokeapi.co/api/v2/pokedex/1/')
         .then((response) => {
             if (response.ok) {
                 return response.json();
@@ -42,7 +36,9 @@ const Home: React.FC<{ pokemons: Pokemon[] }> = ({ pokemons }) => {
                 <ul>
                     {pokemons.map((pokemon: Pokemon) => (
                         <li key={pokemon.entry_number}>
-                            <Title>{pokemon.pokemon_species.name}</Title>
+                            <Link href={`/pokemon/${pokemon.entry_number}`}>
+                                <Title>{pokemon.pokemon_species.name}</Title>
+                            </Link>
                         </li>
                     ))}
                 </ul>
@@ -51,10 +47,11 @@ const Home: React.FC<{ pokemons: Pokemon[] }> = ({ pokemons }) => {
     );
 };
 
-const Title = styled.h1`
+const Title = styled.a`
     color: red;
     font-size: 16px;
     font-family: sans-serif;
+    cursor: pointer;
 `;
 
 export default Home;
