@@ -159,7 +159,7 @@ const CardWrapper = styled.div`
                 height: 48px;
                 border-radius: 50%;
 
-                background: #511730;
+                background: #950952;
                 color: #f8f7ff;
 
                 font-weight: bold;
@@ -167,7 +167,7 @@ const CardWrapper = styled.div`
                 transition: all 0.2s ease-in-out;
 
                 &:hover {
-                    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+                    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
                 }
             }
         }
