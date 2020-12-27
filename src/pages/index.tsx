@@ -1,10 +1,10 @@
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 export const getStaticProps: GetStaticProps = async () => {
-    const pokemons = await fetch('https://pokeapi.co/api/v2/pokedex/1/')
+    const pokemons = await fetch(`${process.env.base_pokemon_url}/pokedex/1/`)
         .then((response) => {
             if (response.ok) {
                 return response.json();
@@ -30,6 +30,17 @@ interface Pokemon {
 }
 
 const Home: React.FC<{ pokemons: Pokemon[] }> = ({ pokemons }) => {
+    useEffect(() => {
+        async function teste() {
+            const teste = await fetch(`${process.env.base_api_url}/teste/`).then((response) =>
+                response.json()
+            );
+            console.log(teste);
+        }
+
+        teste();
+    }, []);
+
     return (
         <>
             <div>

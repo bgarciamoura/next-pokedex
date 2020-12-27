@@ -17,7 +17,7 @@ interface PokemonPaths {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const pokemons: PokemonPaths[] = await fetch('https://pokeapi.co/api/v2/pokedex/1/')
+    const pokemons: PokemonPaths[] = await fetch(`${process.env.base_pokemon_url}/pokedex/1/`)
         .then((response) => {
             if (response.ok) {
                 return response.json();
@@ -40,7 +40,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-    const fetchedPokemonData = await fetch(`https://pokeapi.co/api/v2/pokemon/${params.id}/`)
+    const fetchedPokemonData = await fetch(`${process.env.base_pokemon_url}/pokemon/${params?.id}/`)
         .then((response) => {
             if (response.ok) {
                 return response.json();
